@@ -1,0 +1,12 @@
+many here are pretty useful
+https://forums.fast.ai/t/jupyter-notebook-enhancements-tips-and-tricks/17064
+
+extensions:
+be sure to install both of these:
+https://github.com/ipython-contrib/jupyter_contrib_nbextensions
+https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator
+
+manage exntenstions here: http://localhost:8888/nbextensions
+
+be sure to turn on collapsible headings
+

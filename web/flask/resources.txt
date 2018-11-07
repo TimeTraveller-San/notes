@@ -1,0 +1,9 @@
+learn about decorators before smh
+also keep doing next from left while reading here
+http://flask.pocoo.org/docs/1.0/logging/
+
+be a pro, make seperate configs like a boss
+this helped me setup my youtube downloader on a server
+https://medium.com/ymedialabs-innovation/deploy-flask-app-with-nginx-using-gunicorn-and-supervisor-d7a93aa07c18
+
+
