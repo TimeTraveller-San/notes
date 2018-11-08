@@ -1,0 +1,13 @@
+Alexander Ihler's youtube videos: 
+
+Basics: https://www.youtube.com/watch?v=Yvn3--rIdZg
+Bagging: https://www.youtube.com/watch?v=Rm6s6gmLTdg
+Gradient boosting: https://www.youtube.com/watch?v=sRktKszFmSk
+Adaboost: https://www.youtube.com/watch?v=ix6IvwbVpw0
+
+
+xgboost is a faster and regularized implementation of gradient boosting machine
+reading this helped: https://xgboost.readthedocs.io/en/latest/tutorials/model.html
+Tianqi Chen (creater of XGboost) wrote a series of blog articles over it, read it if you ever get time: https://homes.cs.washington.edu/~tqchen/2016/03/10/story-and-lessons-behind-the-evolution-of-xgboost.html
+
+
