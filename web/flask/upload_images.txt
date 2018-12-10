@@ -1,0 +1,3 @@
+thanks to https://stackoverflow.com/questions/44926465/upload-image-in-flask
+
+this is how: http://flask.pocoo.org/docs/0.12/patterns/fileuploads/: 
