@@ -1,4 +1,6 @@
 # fstab 
+**UPDATE: use ntfs-3g for read/write permissions on ntfs disks. inbuilt ntfs type only supports reading disks**
+`sudo pacman -S ntfs-3g`
 ## Mounting ntfs disks
 I've been using arch linux (my extensively used linux) since more than an year now yet I faced issues using shared disks between arch and windows (my dual boot PC)
 In my first month of usage I edited the fstab file, saved it and reboot my PC only to find that grub is spurting weird errors and I cant boot. Ever since then i've been kinda scared of editing the fstab file since it took me a long while to fix those grub errors due to lack of knowledge. 
@@ -19,7 +21,7 @@ It was pretty simply and I was scared for no reason.
 /dev/sdc3           	none      	swap      	defaults,pri=-2	0 0
 
 #Entertainent
-UUID=<> /home/timetraveller/Entertainment ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=985,uid=1000    0   0
+UUID=<> /home/timetraveller/Entertainment ntfs-3g rw,auto,users,exec,nls=utf8,umask=003,gid=985,uid=1000    0   0
 
 #Media
 UUID=<> /home/timetraveller/Media ntfs rw,auto,users,exec,nls=utf8,umask=003,gid=985,uid=1000    0   0
