@@ -1,0 +1,3 @@
+Very good articles: 
+http://ruder.io/optimizing-gradient-descent/
+https://arxiv.org/pdf/1609.04747.pdf
