@@ -1,0 +1,228 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Note**: Private variables do not exist in python\n",
+    "\n",
+    "# Underscores: `_vars` and `__vars` in python\n",
+    "\n",
+    "dunderscore (double underscored) prefixed variable names are often ignorantly called \"private\" variables which is not the case. These are special variables created to disallow accidental access or overriden of these variables (pretty much like the private members in C++ but not the same since this CAN BE accessed outside of a class. See the following code section:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class my_class():\n",
+    "    def __init__(self, a):\n",
+    "        self.a = a\n",
+    "        self._c = \"I am underscore prefixed\"\n",
+    "        self.__b = \"I am dunderscore prefixed\"\n",
+    "    \n",
+    "    @property\n",
+    "    def ayy(self):\n",
+    "        x = self.a ** 2\n",
+    "        return str(x) + \"I am a property\"\n",
+    "\n",
+    "    def ayyy(self):\n",
+    "        return str(self.a**2) + \"I am not a property\"\n",
+    "\n",
+    "class my2(my_class):\n",
+    "    def __init__(self, a, b):\n",
+    "        super().__init__(a)\n",
+    "        self.b = b\n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 59,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "{'a': 10,\n",
+       " '_c': 'I am underscore prefixed',\n",
+       " '_my_class__b': 'I am dunderscore prefixed'}"
+      ]
+     },
+     "execution_count": 59,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "obj1 = my_class(10)\n",
+    "obj1.__dict__"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "AttributeError",
+     "evalue": "'my_class' object has no attribute '__b'",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mAttributeError\u001b[0m                            Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-43-5e3ed802dad6>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0;31m#This will give an error since its a dunderscore variable\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 2\u001b[0;31m \u001b[0mobj1\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__b\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[0;31mAttributeError\u001b[0m: 'my_class' object has no attribute '__b'"
+     ]
+    }
+   ],
+   "source": [
+    "#This will give an error since its a dunderscore variable\n",
+    "obj1.__b "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 60,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'I am dunderscore prefixed'"
+      ]
+     },
+     "execution_count": 60,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# It's not exactly like a private method in C++ because it can actually be accessed outside the class as follows\n",
+    "obj1._my_class__b"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 61,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "__main__.my2"
+      ]
+     },
+     "execution_count": 61,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x = my2(1, 2)\n",
+    "x.__class__"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 62,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "{'a': 1,\n",
+       " '_c': 'I am underscore prefixed',\n",
+       " '_my_class__b': 'I am dunderscore prefixed',\n",
+       " 'b': 2}"
+      ]
+     },
+     "execution_count": 62,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x.__dict__"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 65,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'I am dunderscore prefixed'"
+      ]
+     },
+     "execution_count": 65,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# can also be accessed by a child class\n",
+    "x._my_class__b"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 66,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1"
+      ]
+     },
+     "execution_count": 66,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x.a"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Properties"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
